@@ -26,8 +26,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::resource('productos', ProductoController::class);
     Route::get('proByAlm', [ProductoController::class, 'ProductosbyAlmacen']);
     Route::get('todosProd', [ProductoController::class, 'todosLosProd']);
-    Route::resource('almacenes', AlmacenController::class);
-    Route::resource('proveedores', ProveedorController::class);
+    Route::resource('almacenes', AlmacenController::class)->parameters([
+        'almacenes' => 'almacen',
+    ]);
+    Route::resource('proveedores', ProveedorController::class)->parameters([
+        'proveedores' => 'proveedor',
+    ]);
     Route::get('auth/logout', [AuthController::class, 'logout']);
 });
 
